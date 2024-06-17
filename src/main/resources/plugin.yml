@@ -1,0 +1,9 @@
+name: WdsjMessage
+version: '${project.version}'
+main: net.wdsj.mcserver.wdsjmessage.bukkit.WdsjMessageBukkit
+#api-version: '1.20'
+
+
+commands:
+  wdsjmessage:
+    permission: wdsjmessage.admin
