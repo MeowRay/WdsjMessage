@@ -76,6 +76,16 @@ class MessageCommand : WdsjCommand<CommandSender> {
             audiences.add(BukkitAudience.of(player))
         }
 
+        MessageQueueManager.enqueueMessage(CountDownTextMessageCell.Builder.newBuilder {
+            setCountdownDuration(10000)
+            countdownStyle = CountDownStyle.LINE_AND_TIME
+            startText = TextComponent("§e§lHIGH-2: ")
+        }.build()) {
+            priority = QueuedCell.Priority.HIGHEST
+            type = QueuedCell.Type.ACTION_BAR
+            audiences.add(BukkitAudience.of(player))
+        }
+
 
         Bukkit.getScheduler().runTaskLater(WdsjMessageBukkit.INSTANCE, Runnable {
             MessageQueueManager.enqueueMessage(CountDownTextMessageCell.Builder.newBuilder {
@@ -86,12 +96,12 @@ class MessageCommand : WdsjCommand<CommandSender> {
                 type = QueuedCell.Type.ACTION_BAR
                 audiences.add(BukkitAudience.of(player))
             }
-        }, 20L)
+        }, 50L)
 
         Bukkit.getScheduler().runTaskLater(WdsjMessageBukkit.INSTANCE, Runnable {
             MessageQueueManager.enqueueMessage(StaticTextMessageCell.Builder.newBuilder {
-                setMessage(TextComponent("§4HIGHEST-2: §l!!!啊啊啊!!!"))
-                val timeout = System.currentTimeMillis() + 5000
+                setMessage(TextComponent("§4HIGHEST-2: §l!!!啊啊啊 很重要!!!"))
+                val timeout = System.currentTimeMillis() + 2000
                 setIsActiveSupplier {
                     System.currentTimeMillis() < timeout
                 }
